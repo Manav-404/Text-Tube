@@ -6,14 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  private tube ;
+  private tube;
 
 
 
   ngOnInit(): void {
       chrome.storage.sync.get(["tube"] , (data)=>{
-        if(typeof data.tube == undefined){
+        if(typeof data.tube === "undefined"){
           chrome.storage.sync.set({"tube" : " "});
+          this.tube = " ";
+          var doc = (<HTMLInputElement>document.getElementById("textArea"))
+          doc.value = this.tube;
+
         }else{
           chrome.storage.sync.set({"tube" : data.tube});
           this.tube = data.tube;

@@ -7,7 +7,9 @@ var contextMenuItem = {
 
 };  
 
-chrome.contextMenus.create(contextMenuItem);
+chrome.contextMenus.removeAll(()=>{
+    chrome.contextMenus.create(contextMenuItem);
+})
 
 chrome.contextMenus.onClicked.addListener((data)=>{
     if(data.menuItemId == "textTube" && data.selectionText){
